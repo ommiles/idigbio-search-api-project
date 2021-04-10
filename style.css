@@ -37,3 +37,12 @@ div {
     width: 50%;
     height: 150vh;
 }
+
+.search-hint {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.show-hint .search-hint {
+    opacity: 1;
+}
