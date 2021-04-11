@@ -1,9 +1,7 @@
 const inputEl = document.querySelector(`input`)
 const clearEl = document.querySelector(`a`)
 const hintEl = document.querySelector(`.search-hint`)
-const searchEl = document.getElementsByClassName(`search-input`)
 const ul = document.querySelector(`ul`)
-const divEl = document.getElementsByTagName(`sidebar`)
 
 const toggleLoading = state => {
     if (state) {
@@ -46,11 +44,11 @@ async function doSearch(event) {
 
         items.forEach(item =>{
 
-            let li = document.createElement('li')
+            const li = document.createElement('li')
             li.className = `list` 
-            let plantName = item.indexTerms.specificepithet
+            const plantName = item.indexTerms.specificepithet
             
-            function capitalizeFirstLetter(str) {
+            const capitalizeFirstLetter = (str) => {
                 return str.charAt(0).toUpperCase() + str.slice(1);
             }
             
