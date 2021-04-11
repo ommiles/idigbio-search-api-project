@@ -28,7 +28,7 @@ async function doSearch(event) {
 
     if (event.key = true){
         hintEl.innerHTML = `Hit Enter to Search ${searchTerm}`
-    }if (event.key === `Enter` && searchTerm.length > 2 && searchTerm.length < 13) {
+    }if (event.key === `Enter` && searchTerm.length > 2 && searchTerm.length < 14) {
         console.log(`Search for`, searchTerm)
         hintEl.innerHTML = `Hit Enter to Search ${searchTerm}`
         toggleLoading(false)
