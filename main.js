@@ -48,7 +48,13 @@ async function doSearch(event) {
 
             let li = document.createElement('li')
             li.className = `list` 
-            li.innerHTML = item.indexTerms.specificepithet
+            let plantName = item.indexTerms.specificepithet
+            
+            function capitalizeFirstLetter(str) {
+                return str.charAt(0).toUpperCase() + str.slice(1);
+            }
+            
+            li.innerHTML = capitalizeFirstLetter(plantName)
             ul.appendChild(li)
         })
     }
