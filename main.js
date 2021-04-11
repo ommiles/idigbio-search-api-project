@@ -14,11 +14,6 @@ const toggleLoading = state => {
     console.log(`Loading State is:`, state)
 }
 
-const clearSearch = () => {
-    hintEl.innerHTML = ``
-    ul.innerHTML = ``
-}
-
 async function doSearch(event) {
 
     const searchTerm = inputEl.value
@@ -57,6 +52,14 @@ async function doSearch(event) {
         })
     }
 }
+
+const clearSearch = () => {
+    hintEl.innerHTML = ``
+    ul.innerHTML = ``
+    inputEl.value = ``
+}
+
+focusMethod = getFocus = () => inputEl.focus()
 
 document.addEventListener(`keyup`, event => {
     if(event.key === `Escape`) {
