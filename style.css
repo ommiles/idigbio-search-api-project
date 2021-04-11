@@ -3,11 +3,14 @@ html, body{
     height: 100%;
 }
 
-/* body {
-    background-color: #ccc;
-    font-family: sans-serif;
-    padding: 10px;
-} */
+body {
+    background-color: #000;
+    color:#fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    line-height: 1.5;
+    font-weight: bold;
+}
 
 .wrapper {
     display: flex;
@@ -15,7 +18,7 @@ html, body{
 }
 
 .main {
-    width: 30%;
+    width: 60%;
     height: 25vh;
     position: -webkit-sticky;
     position: sticky;
@@ -23,26 +26,84 @@ html, body{
 }
 
 div {
-    padding: 50px;
+    padding: 20px;
 }
 
 .sidebar,
 .main div {
-    border: 3px solid black;
     padding: 15px;
-    background-color: #fff;
 }
 
-.sidebar {
-    width: 50%;
-    height: 150vh;
+input {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    outline: none;
+    
+}
+
+.search-input {
+    color: #fff;
+    font-size: 50px;
+    font-weight: 900;
+}
+
+.search-input::placeholder {
+    color: #323232;
+}
+
+.search-clear, 
+.spinner {
+    transition: opacity 0.5s ease;
+    opacity: 0;
+}
+
+a {
+    cursor: pointer;
 }
 
 .search-hint {
+    font-weight: 100;
+}
+
+.search-hint, 
+.spinner {
     opacity: 0;
     transition: opacity 0.5s ease;
 }
 
-.show-hint .search-hint {
+.show-hint .search-hint,
+.loading .spinner,
+.has-results .search-clear {
     opacity: 1;
+}
+
+.loading .search-hint,
+.has-results {
+    opacity: 0;
+}
+
+
+.sidebar {
+    width: 50%;
+    height: 500vh;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    font-size: 25px;
+    padding-top: 20px;
+    font-weight: 100;
+    list-style: none;
+}
+
+.span {
+    text-align: start;
 }

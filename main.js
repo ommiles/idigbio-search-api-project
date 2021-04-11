@@ -1,34 +1,65 @@
 const inputEl = document.querySelector(`input`)
+const clearEl = document.querySelector(`a`)
+const hintEl = document.querySelector(`.search-hint`)
+const searchEl = document.getElementsByClassName(`search-input`)
+const ul = document.querySelector(`ul`)
+const divEl = document.getElementsByTagName(`sidebar`)
+
+const toggleLoading = state => {
+    if (state) {
+        document.body.classList.remove(`loading`)
+        document.body.classList.add('show-hint')
+    } else {
+        document.body.classList.add(`loading`)
+        document.body.classList.remove('show-hint')
+    }
+    console.log(`Loading State is:`, state)
+}
+
+const clearSearch = () => {
+    hintEl.innerHTML = ``
+    ul.innerHTML = ``
+}
 
 async function doSearch(event) {
 
     const searchTerm = inputEl.value
-    const hintEl = document.querySelector(`.search-hint`)
+    toggleLoading(true)
 
     if (event.key = true){
-        document.body.classList.remove('show-hint')
-        hintEl.innerHTML = `Hit enter to search ${searchTerm}`
+        hintEl.innerHTML = `Hit Enter to Search ${searchTerm}`
     }if (event.key === `Enter` && searchTerm.length > 2 && searchTerm.length < 13) {
         console.log(`Search for`, searchTerm)
         hintEl.innerHTML = `Hit Enter to Search ${searchTerm}`
+        toggleLoading(false)
         fetchStateEndangered()
     } else {
+        toggleLoading(true)
         document.body.classList.add('show-hint')
     }
     
     async function fetchStateEndangered() {
+
         const stateResponse = await fetch(`https://search.idigbio.org/v2/search/records/?rq={%22data.dwc:datasetName%22:%22Endangered%22}&{%22data.dwc:stateProvince%22:%22${searchTerm}%22}`)
         const stateResults = await stateResponse.json()
         const {items} = stateResults
 
         items.forEach(item =>{
-            const ul = document.querySelector(`ul`)
+
             let li = document.createElement('li')
+            li.className = `list` 
             li.innerHTML = item.indexTerms.specificepithet
             ul.appendChild(li)
-            // console.log(li)
         })
     }
 }
 
+document.addEventListener(`keyup`, event => {
+    if(event.key === `Escape`) {
+        clearSearch()
+    }
+})
+
+toggleLoading(false)
 inputEl.addEventListener(`keyup`, doSearch)
+clearEl.addEventListener(`click`, clearSearch)
